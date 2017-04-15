@@ -73,6 +73,7 @@
 window.onload = function() {
   // Build a system
   const ui = SwaggerUIBundle({
+    oauth2RedirectUrl: "https://developers.viglet.ai/oauth2-redirect.html",  
     url: "https://developers.viglet.ai/resource/viglet/turing/swagger.yaml",
     dom_id: '#swagger-ui',
     presets: [
