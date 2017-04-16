@@ -31,7 +31,7 @@ securityDefinitions:
   oauth:
     type: oauth2
     flow: implicit
-    authorizationUrl: https://api.viglet.ai/turing/auth
+    authorizationUrl: http://localhost:8080/turing/api/auth
     scopes:
       basic: |
        to read any and all data related to twitter
