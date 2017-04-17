@@ -235,7 +235,90 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Entity'                          
+            $ref: '#/definitions/Entity'       
+  /entity/term/{termId}/variation:
+    get:
+      description: Return variations of term
+      security:
+       - oauth:
+         - basic
+      parameters:
+        - name: termId
+          in: path
+          description: The numerical ID of the desired term
+          required: true
+          type: string
+      tags: 
+        - Entities            
+      responses:
+        "200":
+          description: Success
+          schema:
+            schema:
+            type: array
+            items:   
+              $ref: '#/definitions/TermVariation'  
+    post:
+      description: Add a variation of term
+      security:
+       - oauth:
+         - basic
+      parameters:
+        - in: body
+          name: body
+          description: Term Variation object
+          required: false
+          schema:
+            $ref: '#/definitions/TermVariation'
+      tags: 
+        - Entities  
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Entity'        
+            
+  /entity/term/{termId}/relation:
+    get:
+      description: Return relations of term
+      security:
+       - oauth:
+         - basic
+      parameters:
+        - name: termId
+          in: path
+          description: The numerical ID of the desired term
+          required: true
+          type: string
+      tags: 
+        - Entities            
+      responses:
+        "200":
+          description: Success
+          schema:
+            schema:
+            type: array
+            items:   
+              $ref: '#/definitions/TermRelation'  
+    post:
+      description: Add a relation of term
+      security:
+       - oauth:
+         - basic
+      parameters:
+        - in: body
+          name: body
+          description: Term Variation object
+          required: false
+          schema:
+            $ref: '#/definitions/TermRelation'
+      tags: 
+        - Entities  
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Entity'                                             
 ################################################################################
 #                                 Machine Learning                             #
 ################################################################################            
