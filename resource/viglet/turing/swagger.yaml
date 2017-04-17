@@ -68,7 +68,7 @@ paths:
       parameters:
         - in: body
           name: body
-          description: Entity object that needs to be added to the store
+          description: Entity object
           required: false
           schema:
             $ref: '#/definitions/EntityEdit'
@@ -143,6 +143,25 @@ paths:
           description: Success
           schema:
             $ref: '#/definitions/Terms'
+    post:
+      description: Add an term to specific entity.
+      security:
+       - oauth:
+         - basic
+      parameters:
+        - in: body
+          name: body
+          description: Term object
+          required: false
+          schema:
+            $ref: '#/definitions/TermEdit'
+      tags: 
+        - Entities  
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Entity'              
   /entity/term/{termId}:
     get:
       description: Return a term
@@ -876,7 +895,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Term'
-          
+
   EntityEdit:
     type: object
     required:
@@ -896,10 +915,55 @@ definitions:
     properties:
       id:
         type: integer
+      id_custom:
+        type: string        
+      name:
+        type: string 
+      variations:
+        type: array
+        items:
+          $ref: '#/definitions/TermVariation'
+      relations:
+        type: array
+        items:
+          $ref: '#/definitions/TermRelation'             
+  TermEdit:
+    type: object
+    properties:
+      id_custom:
+        type: string             
       name:
         type: string
-      description:
-        type: string      
+      enabled:
+        type: boolean
+      variations:
+        type: array
+        items:
+          $ref: '#/definitions/TermVariation'
+      relations:
+        type: array
+        items:
+          $ref: '#/definitions/TermRelation'          
+  TermVariation:
+    type: object
+    properties:
+      name: 
+        type: string
+      weight: 
+        type: integer
+      case: 
+        type: string
+      accent: 
+        type: string
+      language: 
+        type: string
+  TermRelation:
+    type: object
+    properties:
+      term_id:
+        type: string
+      type: 
+        type: string
   MLs:
     type: object
     properties:
