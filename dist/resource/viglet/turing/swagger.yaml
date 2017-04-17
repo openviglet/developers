@@ -161,7 +161,10 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Term'                   
+            $ref: '#/definitions/Term' 
+################################################################################
+#                                 Machine Learning                             #
+################################################################################            
   /ml:
     get:
       description: Returns entire machine learning
@@ -212,7 +215,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'  
+            $ref: '#/definitions/ML'  
   
   /ml/type:
     get:
@@ -226,7 +229,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'   
+            $ref: '#/definitions/MLTypes'   
 
   /ml/type/{mlTypeId}:
     get:
@@ -246,7 +249,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'   
+            $ref: '#/definitions/MLType'   
     delete:
       description: Delete an machine learning
       security:
@@ -264,7 +267,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'                     
+            $ref: '#/definitions/MLType'                     
   /ml/data/{dataId}:
     get:
       description: Return a data set
@@ -283,7 +286,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/Data'
     delete:
       description: Delete a data set
       security:
@@ -301,7 +304,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'            
+            $ref: '#/definitions/Data'            
     post:
       description: Update a data set
       security:
@@ -319,7 +322,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'  
+            $ref: '#/definitions/Data'  
             
   /ml/data/group:
     get:
@@ -333,7 +336,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/DataGroups'
             
   
   /ml/data/import:
@@ -379,7 +382,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/DataGroup'
             
   
   
@@ -401,10 +404,8 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/DataGroup'
             
-  
-
   /ml/model:
     get:
       description: Returns all models.
@@ -417,7 +418,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/Models'
 
   /ml/model/{modelId}/evaluation:
     get:
@@ -437,7 +438,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/Model'
             
   
 
@@ -461,7 +462,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Users'
+              $ref: '#/definitions/Model'
 
   /nlp/type:
     get:
@@ -521,7 +522,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/NLPTypes'
             
   
   /nlp/type/{nlpTypeId}:
@@ -547,7 +548,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/NLPType'
             
   
             
@@ -617,7 +618,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/NLP'
             
   
             
@@ -644,7 +645,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/Entity'
 
   /otsn/broker:
     get:
@@ -674,7 +675,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/OTSNBroker'
 
   /otsn/search/theme/json:
     post:
@@ -714,7 +715,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/OTSNSearch'
 
   /se:
     get:
@@ -728,7 +729,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/SEs'
  
   /se/{seId}:
     post:
@@ -748,7 +749,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/SE'
                         
   /se/{seId}/select:
     get:
@@ -793,7 +794,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/SESearch'
             
   /se/{seId}/update:
     get:
@@ -828,7 +829,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/SEUpdate'
             
   
 
@@ -885,91 +886,144 @@ definitions:
         type: string
       description:
         type: string     
-
-  Users:
+  MLTypes:
     type: object
     properties:
-      contributors_enabled:
-        type: boolean
-      created_at:
-        type: string
-      default_profile:
-        type: boolean
-      default_profile_image:
-        type: boolean
-      description:
-        type: string
-      entities:
-        $ref: '#/definitions/Entities'
-      favorites_count:
-        type: integer
-      follow_request_sent:
-        type: boolean
-      following:
-        type: boolean
-      followers_count:
-        type: integer
-      friends_count:
-        type: integer
-      geo_enabled:
-        type: boolean
+      contributors:
+        type: array
+        items:
+          $ref: '#/definitions/MLType'
+  MLType:
+    type: object
+    properties:
       id:
         type: integer
-      id_str:
-        type: string
-      is_translator:
-        type: boolean
-      lang:
-        type: string
-      listed_count:
-        type: integer
-      location:
-        type: string
       name:
         type: string
-      notifications:
-        type: boolean
-      profile_background_color:
-        type: string
-      profile_background_image_url:
-        type: string
-      profile_background_image_url_https:
-        type: string
-      profile_background_tile:
-        type: string
-      profile_banner_url:
-        type: string
-      profile_image_url:
-        type: string
-      profile_image_url_https:
-        type: string
-      profile_link_color:
-        type: string
-      profile_sidebar_border_color:
-        type: string
-      profile_sidebar_fill_color:
-        type: string
-      profile_text_color:
-        type: string
-      profile_use_background_image:
-        type: boolean
-      protected:
-        type: boolean
-      screen_name:
-        type: string
-      show_all_inline_media:
-        type: boolean
-      statuses_count:
+      description:
+        type: string    
+  Data:
+    type: object
+    properties:
+      id:
         type: integer
-      time_zone:
+      name:
         type: string
-      url:
-        type: string
-      utc_offset:
+      description:
+        type: string    
+  DataGroups:
+    type: object
+    properties:
+      contributors:
+        type: array
+        items:
+          $ref: '#/definitions/DataGroup'
+  DataGroup:
+    type: object
+    properties:
+      id:
         type: integer
-      verified:
-        type: boolean
-      withheld_in_countries:
+      name:
         type: string
-      withheld_scope:
+      description:
+        type: string         
+  Models:
+    type: object
+    properties:
+      contributors:
+        type: array
+        items:
+          $ref: '#/definitions/Model'
+  Model:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
         type: string
+      description:
+        type: string          
+  NLPTypes:
+    type: object
+    properties:
+      contributors:
+        type: array
+        items:
+          $ref: '#/definitions/NLPType'
+  NLPType:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string      
+  NLPs:
+    type: object
+    properties:
+      contributors:
+        type: array
+        items:
+          $ref: '#/definitions/NLP'
+  NLP:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string       
+  SEs:
+    type: object
+    properties:
+      contributors:
+        type: array
+        items:
+          $ref: '#/definitions/SE'
+  SE:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string    
+  SESearch:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string             
+  SEUpdate:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string             
+  OTSNBroker:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string    
+  OTSNSearch:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string              
