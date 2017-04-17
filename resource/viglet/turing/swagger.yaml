@@ -122,7 +122,25 @@ paths:
           description: Success
           schema:
             $ref: '#/definitions/Entity'
-            
+    put:
+      description: Update an entity.
+      security:
+       - oauth:
+         - basic
+      parameters:
+        - in: body
+          name: body
+          description: Entity object
+          required: false
+          schema:
+            $ref: '#/definitions/EntityEdit'
+      tags: 
+        - Entities  
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Entity'           
             
   /entity/{entityId}/term:
     get:
@@ -199,6 +217,25 @@ paths:
           description: Success
           schema:
             $ref: '#/definitions/Term' 
+    put:
+      description: Update a term.
+      security:
+       - oauth:
+         - basic
+      parameters:
+        - in: body
+          name: body
+          description: Term object
+          required: false
+          schema:
+            $ref: '#/definitions/TermEdit'
+      tags: 
+        - Entities  
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Entity'                          
 ################################################################################
 #                                 Machine Learning                             #
 ################################################################################            
