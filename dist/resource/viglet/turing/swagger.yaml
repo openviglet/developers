@@ -59,7 +59,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Entity'
+              $ref: '#/definitions/Entities'
 
   /entity/{entityId}:
     get:
@@ -79,7 +79,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/Entity'
             
     delete:
       description: Delete an entity
@@ -103,7 +103,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/Entity'
             
             
   /entity/{entityId}/term:
@@ -124,7 +124,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'
+            $ref: '#/definitions/Terms'
   /entity/term/{termId}:
     get:
       description: Return a term
@@ -143,7 +143,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'         
+            $ref: '#/definitions/Term'         
     delete:
       description: Delete a term
       security:
@@ -161,7 +161,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'                   
+            $ref: '#/definitions/Term'                   
   /ml:
     get:
       description: Returns entire machine learning
@@ -174,7 +174,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users' 
+            $ref: '#/definitions/MLs' 
          
   /ml/{mlId}:
     get:
@@ -194,7 +194,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Users'   
+            $ref: '#/definitions/ML'   
     delete:
       description: Delete an machine learning
       security:
@@ -853,6 +853,38 @@ definitions:
         type: string
       description:
         type: string
+  Terms:
+    type: object
+    properties:
+      contributors:
+        type: array
+        items:
+          $ref: '#/definitions/Term'
+  Term:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string      
+  MLs:
+    type: object
+    properties:
+      contributors:
+        type: array
+        items:
+          $ref: '#/definitions/ML'
+  ML:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string     
 
   Users:
     type: object
