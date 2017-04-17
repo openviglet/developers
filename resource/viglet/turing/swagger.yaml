@@ -198,7 +198,31 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: '#/definitions/Term'         
+            $ref: '#/definitions/Term' 
+    put:
+      description: Update a term.
+      security:
+       - oauth:
+         - basic
+      parameters:
+        - name: termId
+          in: path
+          description: The numerical ID of the desired term
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Term object
+          required: false
+          schema:
+            $ref: '#/definitions/TermEdit'
+      tags: 
+        - Entities  
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Entity'                           
     delete:
       description: Delete a term
       security:
@@ -217,25 +241,7 @@ paths:
           description: Success
           schema:
             $ref: '#/definitions/Term' 
-    put:
-      description: Update a term.
-      security:
-       - oauth:
-         - basic
-      parameters:
-        - in: body
-          name: body
-          description: Term object
-          required: false
-          schema:
-            $ref: '#/definitions/TermEdit'
-      tags: 
-        - Entities  
-      responses:
-        "200":
-          description: Success
-          schema:
-            $ref: '#/definitions/Entity'       
+  
   /entity/term/{termId}/variation:
     get:
       description: Return variations of term
@@ -299,6 +305,30 @@ paths:
             type: array
             items:   
               $ref: '#/definitions/TermVariation'  
+    put:
+      description: Update a variation of term.
+      security:
+       - oauth:
+         - basic
+      parameters:
+        - name: variationId
+          in: path
+          description: The numerical ID of the desired term variation
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Term Variation object
+          required: false
+          schema:
+            $ref: '#/definitions/TermVariation'
+      tags: 
+        - Entities  
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Entity'                        
     delete:
       description: Delete a variation of term
       security:
@@ -381,6 +411,30 @@ paths:
             type: array
             items:   
               $ref: '#/definitions/TermRelation'  
+    put:
+      description: Update a relation of term.
+      security:
+       - oauth:
+         - basic
+      parameters:
+        - name: relationId
+          in: path
+          description: The numerical ID of the desired term variation
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Term Relation object
+          required: false
+          schema:
+            $ref: '#/definitions/TermRelation'
+      tags: 
+        - Entities  
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Entity'                     
     delete:
       description: Delete a relation of term
       security:
