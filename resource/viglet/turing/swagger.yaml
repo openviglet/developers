@@ -60,7 +60,25 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Entities'
-
+    post:
+      description: Add an entity.
+      security:
+       - oauth:
+         - basic
+      parameters:
+        - in: body
+          name: body
+          description: Entity object that needs to be added to the store
+          required: false
+          schema:
+            $ref: '#/definitions/EntityEdit'
+      tags: 
+        - Entities  
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Entity'  
   /entity/{entityId}:
     get:
       description: Return an entity
@@ -80,7 +98,7 @@ paths:
           description: Success
           schema:
             $ref: '#/definitions/Entity'
-            
+         
     delete:
       description: Delete an entity
       security:
@@ -838,29 +856,41 @@ paths:
 ################################################################################
 definitions:
   Entities:
-    type: object
-    properties:
-      contributors:
-        type: array
-        items:
-          $ref: '#/definitions/Entity'
+    type: array
+    items:
+      $ref: '#/definitions/Entity'
 
   Entity:
     type: object
-    properties:
+    required:
+      - name
+      - description      
+    properties:    
       id:
         type: integer
       name:
         type: string
       description:
         type: string
-  Terms:
-    type: object
-    properties:
-      contributors:
+      terms:
         type: array
         items:
           $ref: '#/definitions/Term'
+          
+  EntityEdit:
+    type: object
+    required:
+      - name
+      - description      
+    properties:    
+      name:
+        type: string
+      description:
+        type: string
+  Terms:
+    type: array
+    items:
+      $ref: '#/definitions/Term'
   Term:
     type: object
     properties:
