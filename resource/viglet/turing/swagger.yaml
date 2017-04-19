@@ -913,101 +913,7 @@ paths:
             
   
             
-  /otca/af:
-    post:
-      description: Imports the OTCA Autority File XML to Viglet Turing as Entity.
-      security:
-       - oauth:
-         - basic
-      operationId: uploadFile
-      consumes:
-        - multipart/form-data
-      produces:
-        - application/json         
-      parameters:
-        - name: file
-          in: formData
-          description: OTCA AF XML file
-          required: true
-          type: file
-      tags: 
-        - Integrations          
-      responses:
-        "200":
-          description: Success
-          schema:
-            $ref: '#/definitions/Entity'
-
-  /otsn/broker:
-    get:
-      description: Simulate the OTSN Broker
-      security:
-       - oauth:
-         - basic
-      parameters:
-        - name: data
-          in: formData
-          description: XML with atributes
-          required: false
-          type: string
-        - name: index
-          in: formData
-          description: Name of core Index of Search Engine
-          required: false
-          type: string
-        - name: config
-          in: formData
-          description: Config file name
-          required: false
-          type: string
-      tags: 
-        - Integrations          
-      responses:
-        "200":
-          description: Success
-          schema:
-            $ref: '#/definitions/OTSNBroker'
-
-  /otsn/search/theme/json:
-    post:
-      description: Returns JSON of Semantic Navigation.
-      security:
-       - oauth:
-         - basic
-      parameters:
-        - name: q
-          in: query
-          description: Term to search
-          required: false
-          type: string
-        - name: p
-          in: query
-          description: Number of page
-          required: false
-          type: integer
-        - name: fq[]
-          in: query
-          description: Filter Query, normaly is used to facets
-          required: false
-          type: string
-        - name: _setlocale
-          in: query
-          description: Locale
-          required: false
-          type: string
-        - name: sort
-          in: query
-          description: Search Sort
-          required: false
-          type: string
-      tags: 
-        - Integrations          
-      responses:
-        "200":
-          description: Success
-          schema:
-            $ref: '#/definitions/OTSNSearch'
-
+  
   /se:
     get:
       description: Returns all search engines
@@ -1121,7 +1027,171 @@ paths:
           description: Success
           schema:
             $ref: '#/definitions/SEUpdate'
+  /sn/indexer:
+    post:
+      description: Simulate the OTSN Broker
+      security:
+       - oauth:
+         - basic
+      parameters:
+        - name: data
+          in: formData
+          description: XML with atributes
+          required: false
+          type: string
+        - name: index
+          in: formData
+          description: Name of core Index of Search Engine
+          required: false
+          type: string
+        - name: config
+          in: formData
+          description: Config file name
+          required: false
+          type: string
+      tags: 
+        - Semantic Navigation
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/OTSNBroker'
+
+  /sn/search:
+    get:
+      description: Returns JSON of Semantic Navigation.
+      security:
+       - oauth:
+         - basic
+      parameters:
+        - name: q
+          in: query
+          description: Term to search
+          required: false
+          type: string
+        - name: p
+          in: query
+          description: Number of page
+          required: false
+          type: integer
+        - name: fq[]
+          in: query
+          description: Filter Query, normaly is used to facets
+          required: false
+          type: string
+        - name: _setlocale
+          in: query
+          description: Locale
+          required: false
+          type: string
+        - name: sort
+          in: query
+          description: Search Sort
+          required: false
+          type: string
+      tags: 
+        - Semantic Navigation          
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/OTSNSearch'
+              
             
+  /otca/af:
+    post:
+      description: Imports the OTCA Autority File XML to Viglet Turing as Entity.
+      security:
+       - oauth:
+         - basic
+      operationId: uploadFile
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json         
+      parameters:
+        - name: file
+          in: formData
+          description: OTCA AF XML file
+          required: true
+          type: file
+      tags: 
+        - Integrations          
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Entity'
+
+  /otsn/broker:
+    post:
+      description: Simulate the OTSN Broker
+      security:
+       - oauth:
+         - basic
+      parameters:
+        - name: data
+          in: formData
+          description: XML with atributes
+          required: false
+          type: string
+        - name: index
+          in: formData
+          description: Name of core Index of Search Engine
+          required: false
+          type: string
+        - name: config
+          in: formData
+          description: Config file name
+          required: false
+          type: string
+      tags: 
+        - Integrations          
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/OTSNBroker'
+
+  /otsn/search/theme/json:
+    get:
+      description: Returns JSON of Semantic Navigation.
+      security:
+       - oauth:
+         - basic
+      parameters:
+        - name: q
+          in: query
+          description: Term to search
+          required: false
+          type: string
+        - name: p
+          in: query
+          description: Number of page
+          required: false
+          type: integer
+        - name: fq[]
+          in: query
+          description: Filter Query, normaly is used to facets
+          required: false
+          type: string
+        - name: _setlocale
+          in: query
+          description: Locale
+          required: false
+          type: string
+        - name: sort
+          in: query
+          description: Search Sort
+          required: false
+          type: string
+      tags: 
+        - Integrations          
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/OTSNSearch'
   
 
 ################################################################################
