@@ -11,7 +11,7 @@ host: api.viglet.ai
 # basePath prefixes all resource paths
 
 # basePath: 
-basePath: /turing
+basePath: /vecchio
 
 #
 schemes:
